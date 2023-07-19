@@ -7,7 +7,7 @@ import fastapi
 
 import uvicorn
 from fastapi import Path
-import common.config_info
+from common import config_info
 import stringproc_endpoint_helpers
 
 from starlette.responses import JSONResponse
@@ -49,7 +49,7 @@ def rmv_letters(word: CustomString) -> JSONResponse:
 
 if __name__ == '__main__':
     uvicorn.run("stringproc_main:app",
-                host=common.config_info.STRINGPROC_APP,
-                port=common.config_info.STRINGPROC_PORT,
+                host=config_info.STRINGPROC_APP,
+                port=config_info.STRINGPROC_PORT,
                 reload=True
                 )
