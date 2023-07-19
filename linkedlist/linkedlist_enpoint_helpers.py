@@ -26,7 +26,6 @@ def get_all_linked_lists():
     Returns:
         a list containing all LinkedLists names.
     """
-    global linked_lists_dict
     response = {
         "lists": list(linked_lists_dict.keys()),
         "message": "Success."
@@ -44,7 +43,6 @@ def create_linked_list(item: linkedlist_req.CreateLinkedListRequest):
     Returns:
 
     """
-    global linked_lists_dict
     response = {"message": "Success."}
 
     name = item.dict()["name"]
@@ -73,7 +71,6 @@ def delete_linked_list(item: linkedlist_req.DeleteLinkedListRequest):
     Returns:
 
     """
-    global linked_lists_dict
     item_dict = item.dict()
     response = {"message": "LinkedList not found."}
 
