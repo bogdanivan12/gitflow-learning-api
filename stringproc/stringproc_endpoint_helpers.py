@@ -20,6 +20,13 @@ logging.basicConfig(filename="log.txt", filemode="w",
 
 
 def validator_custom(fnc: Callable):
+    """
+    Decorator ce verifica functiile de ValueError
+     si in functie de caz intoarce un obiect JSONResponse cu
+    cod 200 si raspuns adecvat + logging.
+    :param fnc:
+    :return:
+    """
 
     @wraps(fnc)
     def inner(*args, **kwargs) -> JSONResponse:
@@ -36,6 +43,11 @@ def validator_custom(fnc: Callable):
 
 @validator_custom
 def get_char_occ(word: str):
+    """
+      :param word: string
+      :return: JSONResponse ce va trimite un cod 200
+      si un dictionar cu litere si frecvebta fiecaruia
+      """
     if not set(word) <= set(string.ascii_letters):
         raise ValueError("Word must contain only ascii letters")
     return Counter(word)
@@ -43,6 +55,13 @@ def get_char_occ(word: str):
 
 @validator_custom
 def char_rmv(word: CustomString):
+    """
+    :param word: Pydantic class which contains a string formed
+    by letters and numbers, where the letters are stripped and
+    if anoter atribute of class is true then it sums remaining
+    numbers and returns
+    :return: JSONResponse
+    """
     if len(word.string) > 255 or len(word.string) < 1 \
             or (not set(word.string) <= set(string.ascii_letters + string.digits)):
         raise ValueError("Word must be up to 255 characters and must be alphanumeric")
