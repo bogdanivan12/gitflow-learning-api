@@ -16,7 +16,7 @@ class Node:
         Function that initializes the object with the provided parameters.
         """
         self.value = value
-        self.next = next_node
+        self.next_node = next_node
 
     def __str__(self):
         """
@@ -50,3 +50,14 @@ class LinkedList:
             response += f" {aux}"
             aux = aux.next_node
         return response
+
+    def __len__(self):
+        """
+        Function that returns the length of the LinkedList.
+        """
+        length = 0
+        aux = self.head
+        while aux is not None:
+            aux = aux.next_node
+            length += 1
+        return length

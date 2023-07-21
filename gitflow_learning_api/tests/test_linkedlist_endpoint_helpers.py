@@ -1,7 +1,7 @@
 """File containing unit testing functions."""
-from linkedlist import linkedlist_endpoint_helpers as linkedlist_help
-from linkedlist import linkedlist_request_classes as linkedlist_req
-from linkedlist import linkedlist_classes
+from gitflow_learning_api.linkedlist import linkedlist_classes, \
+    linkedlist_request_classes as linkedlist_req, \
+    linkedlist_endpoint_helpers as linkedlist_help
 
 
 def test_get_all_linked_lists_empty():

@@ -7,7 +7,7 @@ import fastapi
 
 import uvicorn
 from fastapi import Path
-from common import config_info
+from gitflow_learning_api.common import config_info
 import stringproc_endpoint_helpers
 
 from starlette.responses import JSONResponse

@@ -4,7 +4,7 @@ set -x
 
 SCRIPT_PATH=$(dirname "$0")
 
-python3 -m pylint linkedlist \
+python3 -m pylint . \
   --init-hook="import sys; sys.path.append('$SCRIPT_PATH')" \
   --rcfile=.pylintrc
 
