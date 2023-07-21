@@ -1,0 +1,17 @@
+FROM python:3
+LABEL authors="bogdani"
+
+COPY gitflow_learning_api/linkedlist/requirements.txt /gitflow_learning_api/linkedlist/requirements.txt
+
+WORKDIR /gitflow_learning_api
+
+ENV PYTHONPATH="${PYTHONPATH}:/."
+
+RUN pip install -r linkedlist/requirements.txt
+
+COPY gitflow_learning_api/common ./common
+COPY gitflow_learning_api/linkedlist ./linkedlist
+
+EXPOSE 8080
+
+CMD ["python3", "linkedlist/linkedlist_main.py"]
