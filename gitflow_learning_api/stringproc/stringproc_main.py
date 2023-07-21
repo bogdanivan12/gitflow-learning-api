@@ -48,8 +48,9 @@ def rmv_letters(word: CustomString) -> JSONResponse:
 
 
 if __name__ == '__main__':
-    uvicorn.run("stringproc_main:app",
-                host=config_info.STRINGPROC_APP,
-                port=config_info.STRINGPROC_PORT,
-                reload=True
-                )
+    uvicorn.run(
+        app=config_info.STRINGPROC_APP,
+        host=config_info.HOST,
+        port=config_info.STRINGPROC_PORT,
+        reload=True
+    )

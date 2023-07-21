@@ -1,6 +1,17 @@
-FROM python:3.11.4
-WORKDIR /app
-COPY ../.. /app
-RUN pip3 install --no-cache-dir -r ./requirements.txt
-EXPOSE 8000
-CMD python3 stringproc_main.py
+FROM python:3
+LABEL authors="csandor"
+
+COPY gitflow_learning_api/stringproc/requirements.txt /gitflow_learning_api/stringproc/requirements.txt
+
+WORKDIR /gitflow_learning_api
+
+ENV PYTHONPATH="${PYTHONPATH}:/."
+
+RUN pip install -r stringproc/requirements.txt
+
+COPY gitflow_learning_api/common ./common
+COPY gitflow_learning_api/stringproc ./stringproc
+
+EXPOSE 8081
+
+CMD ["python3", "stringproc/stringproc_main.py"]
