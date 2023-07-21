@@ -9,8 +9,8 @@ from collections import Counter
 
 from fastapi.responses import JSONResponse
 
-from stringproc_request_classes import CustomString
-
+# from stringproc_request_classes import CustomString
+from gitflow_learning_api.stringproc.stringproc_request_classes import CustomString
 
 
 logging.basicConfig(filename="log.txt", filemode="w",

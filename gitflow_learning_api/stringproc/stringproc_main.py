@@ -7,7 +7,7 @@ import fastapi
 
 import uvicorn
 from fastapi import Path
-from common import config_info
+from gitflow_learning_api.common import config_info
 import stringproc_endpoint_helpers
 
 from starlette.responses import JSONResponse
@@ -48,8 +48,9 @@ def rmv_letters(word: CustomString) -> JSONResponse:
 
 
 if __name__ == '__main__':
-    uvicorn.run("stringproc_main:app",
-                host=config_info.STRINGPROC_APP,
-                port=config_info.STRINGPROC_PORT,
-                reload=True
-                )
+    uvicorn.run(
+        app=config_info.STRINGPROC_APP,
+        host=config_info.HOST,
+        port=config_info.STRINGPROC_PORT,
+        reload=True
+    )

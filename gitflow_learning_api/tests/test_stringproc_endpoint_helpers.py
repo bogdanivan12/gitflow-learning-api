@@ -1,14 +1,11 @@
 """
 Testing module
 """
-import os
-import sys
 import json
-import pathlib
 from starlette.responses import JSONResponse
 
-from stringproc.stringproc_endpoint_helpers import char_rmv, get_char_occ
-from stringproc.stringproc_request_classes import CustomString
+from gitflow_learning_api.stringproc.stringproc_endpoint_helpers import char_rmv, get_char_occ
+from gitflow_learning_api.stringproc.stringproc_request_classes import CustomString
 
 
 def test_happy_get_char_occ1() -> None:
