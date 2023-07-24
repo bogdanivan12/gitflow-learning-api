@@ -1,3 +1,4 @@
+"""Tests module init file."""
 import os
 import sys
 import pathlib

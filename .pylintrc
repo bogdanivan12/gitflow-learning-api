@@ -107,6 +107,7 @@ disable=
     global-variable-not-assigned,
     redefined-outer-name,
     R6002,
+    no-member,
 
 
 
