@@ -40,6 +40,7 @@ class InsertRequest(BaseModel):
     value: str
     position: int
 
+
 class EditRequest(BaseModel):
     """
     Class that represents the request body for the edit endpoint.

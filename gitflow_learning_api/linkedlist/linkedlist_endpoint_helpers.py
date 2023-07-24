@@ -285,7 +285,7 @@ def insert(item: linkedlist_req.InsertRequest):
     return response
 
 
-def edit(item: linkedlist_req.EditRequestRequest):
+def edit(item: linkedlist_req.EditRequest):
     """
     Endpoint that is responsible for the edit operation.
 
