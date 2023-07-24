@@ -4,8 +4,10 @@ Testing module
 import json
 from starlette.responses import JSONResponse
 
-from gitflow_learning_api.stringproc.stringproc_endpoint_helpers import char_rmv, get_char_occ
-from gitflow_learning_api.stringproc.stringproc_request_classes import CustomString
+from gitflow_learning_api.stringproc.\
+    stringproc_endpoint_helpers import char_rmv, get_char_occ
+from gitflow_learning_api.stringproc.\
+    stringproc_request_classes import CustomString
 
 
 def test_happy_get_char_occ1() -> None:
@@ -29,10 +31,11 @@ def test_not_happy_get_char_occ_1() -> None:
     :return:
     """
     param = "asdasd*"
-    expct_r = JSONResponse(status_code=200,
-                           content={"Error": "Word must contain only ascii letters"})
+    expct_r = JSONResponse\
+        (status_code=200,content={"Error":"Word must contain only ascii "})
     actual_r = get_char_occ(param)
-    assert json.loads(expct_r.body.decode()) == json.loads(actual_r.body.decode())
+    assert json.loads(expct_r.body.decode()) \
+           == json.loads(actual_r.body.decode())
 
 
 def test_happy_char_rmv_1() -> None:
@@ -47,7 +50,8 @@ def test_happy_char_rmv_1() -> None:
                                     "numeric_sum": 6
                                     })
     actual_r = char_rmv(param)
-    assert json.loads(expct_r.body.decode()) == json.loads(actual_r.body.decode())
+    assert json.loads(expct_r.body.decode()) \
+           == json.loads(actual_r.body.decode())
 
 
 def test_not_happy_char_rmv_1() -> None:
@@ -64,4 +68,5 @@ def test_not_happy_char_rmv_1() -> None:
                 "characters and must be alphanumeric"
         })
     actual_r = char_rmv(param)
-    assert json.loads(expct_r.body.decode()) == json.loads(actual_r.body.decode())
+    assert json.loads(expct_r.body.decode())\
+           == json.loads(actual_r.body.decode())
