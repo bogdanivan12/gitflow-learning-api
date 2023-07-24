@@ -39,3 +39,10 @@ class InsertRequest(BaseModel):
     name: str
     value: str
     position: int
+
+
+class ClearLinkedListRequest(BaseModel):
+    """
+    Class that represents the request body for the clear-linked-list endpoint.
+    """
+    name: str
