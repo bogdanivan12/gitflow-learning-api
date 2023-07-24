@@ -312,14 +312,16 @@ def edit(item: linkedlist_req.EditRequest):
     value = item_dict["value"]
     position = item_dict["position"]
 
-    if len(linked_list) < position:
+    if len(linked_list) <= position:
         response["message"] = "The LinkedList is too short."
         return response
-
+    if position < 0:
+        response["message"] = "The position is less than 0."
+        return response
     try:
         aux = linked_list.head
         i = 0
-        while i < position - 1:
+        while i < position:
             aux = aux.next_node
             i += 1
         aux.value = value
