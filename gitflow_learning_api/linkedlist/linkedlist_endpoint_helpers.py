@@ -285,6 +285,50 @@ def insert(item: linkedlist_req.InsertRequest):
     return response
 
 
+def edit(item: linkedlist_req.EditRequest):
+    """
+    Endpoint that is responsible for the edit operation.
+    
+    Args:
+         item:
+            name (str): the name of the LinkedList.
+            value (str): the value to be modified into the LinkedList.
+            position (int): the position of the element which should be modified in list.
+    
+    Returns:
+        message (str): the state of the operation.
+    """
+    item_dict = item.dict()
+    response = {"message": "LinkedList not found."}
+
+    if item_dict["name"] not in linked_lists_dict:
+        return response
+
+    linked_list = linked_lists_dict[item_dict["name"]]
+    value = item_dict["value"]
+    position = item_dict["position"]
+
+    if len(linked_list) < position:
+        response["message"] = "The LinkedList is too short."
+        return response
+
+    try:
+        aux = linked_list.head
+        i = 0
+        while i < position - 1:
+            aux = aux.next_node
+            i += 1
+        aux.value = value
+
+        response["message"] = "Success."
+        pickle_dump_linked_lists()
+        
+    except Exception as error:
+        response["message"] = f"Encountered error: {error}"
+
+    return response
+
+  
 def clear_linked_list(item: linkedlist_req.ClearLinkedListRequest):
     """
     Endpoint that is responsible for deleting all nodes in a linked list.
@@ -308,6 +352,7 @@ def clear_linked_list(item: linkedlist_req.ClearLinkedListRequest):
             aux = linked_list.head
             linked_list.head = linked_list.head.next_node
             del aux
+        pickle_dump_linked_lists()
     except Exception as error:
         response["message"] = f"Encountered error: {error}"
 

@@ -143,7 +143,22 @@ async def insert(item: linkedlist_req.InsertRequest):
     """
     return linkedlist_help.insert(item)
 
+  
+@app.post("/edit/")
+async def edit(item: linkedlist_req.EditRequest):
+    """
+    End-point which is responsible for editing an elemnt
+    Args:
+        item:
+            name (str): the name of linkedList
+            value(str): the value to be edited into the LinkedList
+            position (int): the position of the newly inserted element in list.
+    Returns:
+        message (str): the state of operation
+    """
+    return linkedlist_help.edit(item)
 
+  
 @app.post("/clear-linked-list/")
 async def clear_linked_list(item: linkedlist_req.ClearLinkedListRequest):
     """
@@ -157,6 +172,7 @@ async def clear_linked_list(item: linkedlist_req.ClearLinkedListRequest):
         message (str): the state of the operation.
     """
     return linkedlist_help.clear_linked_list(item)
+
 
 if __name__ == "__main__":
     uvicorn.run(

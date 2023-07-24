@@ -33,7 +33,7 @@ class LinkedList:
         head: the first element (node) in the list.
         name: the name of the list.
     """
-    def __init__(self, name, head=None):
+    def __init__(self, name, head: Node = None):
         """
         Function that initializes the object with the provided parameters.
         """
