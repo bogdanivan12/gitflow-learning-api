@@ -1,23 +1,26 @@
 """
 Main module to start api
 """
-from typing import Annotated
+
+
+#sys.path.append(str(pathlib.Path(os.path.join
+# (os.getcwd(), "../..")).resolve()))
 
 import fastapi
 
 import uvicorn
-from fastapi import Path
-from gitflow_learning_api.common import config_info
+from starlette.responses import JSONResponse
+
 import stringproc_endpoint_helpers
 
-from starlette.responses import JSONResponse
 from stringproc_request_classes import CustomString
-
+from gitflow_learning_api.common import config_info
 
 app = fastapi.FastAPI()
 
 
-@app.get("/", response_class=fastapi.responses.RedirectResponse, include_in_schema=False)
+@app.get("/", response_class=fastapi.responses.RedirectResponse
+    , include_in_schema=False)
 def redir():
     """
     Functie de redirectare catre documentatie pe ruta de baza
@@ -26,9 +29,10 @@ def redir():
 
 
 @app.get("/get-char-occurrences/{word}")
-def char_occ(word: Annotated[str, Path(title="word to get occurrences")]) -> JSONResponse:
+def char_occ(word: str) -> JSONResponse:
     """
-    Functie ce intoarce un JSONResponse cu numarul de aparitii a unui caracter
+    Functie ce intoarce un
+     JSONResponse cu numarul de aparitii a unui caracter
     :param word: string
     :return: JSONResponse
     """

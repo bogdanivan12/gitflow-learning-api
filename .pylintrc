@@ -106,6 +106,8 @@ disable=
     broad-exception-caught,
     global-variable-not-assigned,
     redefined-outer-name,
+    R6002,
+
 
 
 [REPORTS]
@@ -517,7 +519,8 @@ preferred-modules=
 
 # Exceptions that will emit a warning when being caught. Defaults to
 # "Exception"
-overgeneral-exceptions=Exception
+overgeneral-exceptions=builtins.BaseException,
+                       builtins.Exception
 
 
 [TYPING]

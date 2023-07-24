@@ -10,11 +10,13 @@ from collections import Counter
 from fastapi.responses import JSONResponse
 
 # from stringproc_request_classes import CustomString
-from gitflow_learning_api.stringproc.stringproc_request_classes import CustomString
+from gitflow_learning_api.stringproc\
+    .stringproc_request_classes import CustomString
 
 
 logging.basicConfig(filename="log.txt", filemode="w",
-                    format="[%(asctime)s] [PID:%(process)d ] [%(module)s: %(lineno)d] "
+                    format="[%(asctime)s] [PID:%(process)d ] "
+                           "[%(module)s: %(lineno)d] "
                            " [%(levelname)s] %(message)s",
                     level=logging.DEBUG)
 
@@ -35,8 +37,10 @@ def validator_custom(fnc: Callable):
             logging.info("Function %s called",fnc.__name__)
             return JSONResponse(status_code=200, content=fnc(*args, **kwargs))
         except ValueError as error_e:
-            logging.warning("Error when called function %s  -   %s",fnc.__name__, error_e)
-            return JSONResponse(status_code=200, content={"Error": f"{error_e}"})
+            logging.warning("Error when called function %s  "
+                            "-   %s",fnc.__name__, error_e)
+            return JSONResponse(status_code=200,
+                                content={"Error": f"{error_e}"})
 
     return inner
 
@@ -63,8 +67,10 @@ def char_rmv(word: CustomString):
     :return: JSONResponse
     """
     if len(word.string) > 255 or len(word.string) < 1 \
-            or (not set(word.string) <= set(string.ascii_letters + string.digits)):
-        raise ValueError("Word must be up to 255 characters and must be alphanumeric")
+            or (not set(word.string) <= set(string.ascii_letters
+                                            + string.digits)):
+        raise ValueError("Word must be up to 255 characters "
+                         "and must be alphanumeric")
 
     statement = "".join(filter(lambda x: not x.isalpha() , word.string))
 
