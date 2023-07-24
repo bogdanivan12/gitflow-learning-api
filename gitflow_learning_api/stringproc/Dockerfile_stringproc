@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:3.11.4
 LABEL authors="csandor"
 
 COPY gitflow_learning_api/stringproc/requirements.txt /gitflow_learning_api/stringproc/requirements.txt
