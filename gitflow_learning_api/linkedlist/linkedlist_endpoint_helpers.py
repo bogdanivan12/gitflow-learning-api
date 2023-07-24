@@ -248,6 +248,10 @@ def insert(item: linkedlist_req.InsertRequest):
     value = item_dict["value"]
     position = item_dict["position"]
 
+    if position < 0:
+        response["message"] = "The position must be greater or equal to zero."
+        return response
+
     if len(linked_list) < position:
         response["message"] = "The LinkedList is too short."
         return response
