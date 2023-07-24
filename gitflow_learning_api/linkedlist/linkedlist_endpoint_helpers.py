@@ -285,15 +285,15 @@ def insert(item: linkedlist_req.InsertRequest):
     return response
 
 
-def edit(item: linkedlist_req.InsertRequest):
+def edit(item: linkedlist_req.EditRequestRequest):
     """
     Endpoint that is responsible for the edit operation.
 
     Args:
          item:
             name (str): the name of the LinkedList.
-            value (str): the value to be inserted into the LinkedList.
-            position (int): the position of the newly inserted element in list.
+            value (str): the value to be modified into the LinkedList.
+            position (int): the position of the element which should be modified in list.
 
     Returns:
         message (str): the state of the operation.

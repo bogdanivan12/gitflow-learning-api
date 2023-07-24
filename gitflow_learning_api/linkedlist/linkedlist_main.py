@@ -144,7 +144,7 @@ async def insert(item: linkedlist_req.InsertRequest):
     return linkedlist_help.insert(item)
 
 @app.post("/edit/")
-async def edit(item: linkedlist_req.InsertRequest):
+async def edit(item: linkedlist_req.EditRequest):
     """
     End-point which is responsible for editing an elemnt
     Args:
