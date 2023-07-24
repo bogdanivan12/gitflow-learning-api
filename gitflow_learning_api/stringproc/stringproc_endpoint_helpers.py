@@ -53,7 +53,7 @@ def get_char_occ(word: str):
       si un dictionar cu litere si frecvebta fiecaruia
       """
     if not set(word) <= set(string.ascii_letters):
-        raise ValueError("Word must contain only ascii letters")
+        raise ValueError("Word must contain only ascii")
     return Counter(word)
 
 

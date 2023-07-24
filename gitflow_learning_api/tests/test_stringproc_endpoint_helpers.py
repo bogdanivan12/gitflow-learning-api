@@ -12,9 +12,7 @@ from gitflow_learning_api.stringproc.\
 
 def test_happy_get_char_occ1() -> None:
     """
-    Test1
-
-    :return:
+    Test for get_char_occ when the given input is correct
     """
     param = "asdasd"
     expct_r = {"a": 2, "s": 2, "d": 2}
@@ -27,12 +25,11 @@ def test_happy_get_char_occ1() -> None:
 
 def test_not_happy_get_char_occ_1() -> None:
     """
-    Test2
-    :return:
+    Test for get_char_occ when the string provided is not correct
     """
     param = "asdasd*"
     expct_r = JSONResponse\
-        (status_code=200,content={"Error":"Word must contain only ascii "})
+        (status_code=200,content={"Error":"Word must contain only ascii"})
     actual_r = get_char_occ(param)
     assert json.loads(expct_r.body.decode()) \
            == json.loads(actual_r.body.decode())
@@ -40,9 +37,7 @@ def test_not_happy_get_char_occ_1() -> None:
 
 def test_happy_char_rmv_1() -> None:
     """
-    Test 1
-
-    :return:
+    Test for char_rmv when the given input is correct (letters and int)
     """
     param = CustomString(string="asd12f3", calculate_sum=True)
     expct_r = JSONResponse(status_code=200,
@@ -56,8 +51,8 @@ def test_happy_char_rmv_1() -> None:
 
 def test_not_happy_char_rmv_1() -> None:
     """
-    Test 2
-    :return:
+    Test when the given input is
+    not correct (contains not letter-int characters)
     """
     param = CustomString(string="%asd^12f3*", calculate_sum=True)
     expct_r = JSONResponse(

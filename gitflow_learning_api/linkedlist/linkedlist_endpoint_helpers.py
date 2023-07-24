@@ -285,6 +285,48 @@ def insert(item: linkedlist_req.InsertRequest):
     return response
 
 
+def edit(item: linkedlist_req.InsertRequest):
+    """
+    Endpoint that is responsible for the edit operation.
+
+    Args:
+         item:
+            name (str): the name of the LinkedList.
+            value (str): the value to be inserted into the LinkedList.
+            position (int): the position of the newly inserted element in list.
+
+    Returns:
+        message (str): the state of the operation.
+    """
+    item_dict = item.dict()
+    response = {"message": "LinkedList not found."}
+
+    if item_dict["name"] not in linked_lists_dict:
+        return response
+
+    linked_list = linked_lists_dict[item_dict["name"]]
+    value = item_dict["value"]
+    position = item_dict["position"]
+
+    if len(linked_list) < position:
+        response["message"] = "The LinkedList is too short."
+        return response
+
+    try:
+        aux = linked_list.head
+        i = 0
+        while i < position - 1:
+            aux = aux.next_node
+            i += 1
+        aux.value = value
+
+        response["message"] = "Success."
+        pickle_dump_linked_lists()
+    except Exception as error:
+        response["message"] = f"Encountered error: {error}"
+
+    return response
+
 # Load linked_list_dict when the service starts.
 try:
     with open("db_linked_lists", "rb") as file:
