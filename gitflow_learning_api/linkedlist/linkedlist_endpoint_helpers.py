@@ -285,6 +285,35 @@ def insert(item: linkedlist_req.InsertRequest):
     return response
 
 
+def clear_linked_list(item: linkedlist_req.ClearLinkedListRequest):
+    """
+    Endpoint that is responsible for deleting all nodes in a linked list.
+
+    Args:
+         item:
+            name (str): the name of the LinkedList.
+
+    Returns:
+        message (str): the state of the operation.
+    """
+    item_dict = item.dict()
+    linked_list = linked_lists_dict[item_dict["name"]]
+
+    response = {
+        "message": "Success."
+    }
+
+    try:
+        while linked_list.head is not None:
+            aux = linked_list.head
+            linked_list.head = linked_list.head.next_node
+            del aux
+    except Exception as error:
+        response["message"] = f"Encountered error: {error}"
+
+    return response
+
+
 # Load linked_list_dict when the service starts.
 try:
     with open("db_linked_lists", "rb") as file:
