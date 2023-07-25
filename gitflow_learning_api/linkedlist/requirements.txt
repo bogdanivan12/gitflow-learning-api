@@ -1,4 +1,4 @@
-fastapi==0.99.1
-uvicorn==0.22.0
-pylint==2.17.4
-pytest
+fastapi == 0.99.1
+uvicorn == 0.22.0
+pylint == 2.17.4
+pytest == 7.4.0

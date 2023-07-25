@@ -3,18 +3,21 @@ Main module to start api
 """
 
 
-#sys.path.append(str(pathlib.Path(os.path.join
-# (os.getcwd(), "../..")).resolve()))
+
 
 import fastapi
 
 import uvicorn
 from starlette.responses import JSONResponse
 
-import stringproc_endpoint_helpers
 
-from stringproc_request_classes import CustomString
 from gitflow_learning_api.common import config_info
+
+from gitflow_learning_api.stringproc \
+    import  stringproc_request_classes
+from gitflow_learning_api.stringproc \
+    import  stringproc_endpoint_helpers
+
 
 app = fastapi.FastAPI()
 
@@ -23,7 +26,7 @@ app = fastapi.FastAPI()
     , include_in_schema=False)
 def redir():
     """
-    Functie de redirectare catre documentatie pe ruta de baza
+    Redirect function to docs route
     """
     return fastapi.responses.RedirectResponse(url="/docs")
 
@@ -31,8 +34,8 @@ def redir():
 @app.get("/get-char-occurrences/{word}")
 def char_occ(word: str) -> JSONResponse:
     """
-    Functie ce intoarce un
-     JSONResponse cu numarul de aparitii a unui caracter
+     Function which returns a
+     JSONResponse with numbers of occurrences of a char in a str
     :param word: string
     :return: JSONResponse
     """
@@ -40,14 +43,16 @@ def char_occ(word: str) -> JSONResponse:
 
 
 @app.post("/remove-letters-from-string")
-def rmv_letters(word: CustomString) -> JSONResponse:
+def rmv_letters(word: stringproc_request_classes.CustomString) -> JSONResponse:
     """
-    Functie ce intoarce un JSONResponse care intoarce stringul
-    din payload fara litere si (in functie de
-    valoarea unui alt parametru  intoarce fie None fie suma
+    Function which returns a  JSONResponse which takes the
+    string from payload without the letters and returns
+    either the string without the numbers and none or the
+    string without the numbers and the sum of those numbers
     :param word: CustomString (pydantic model)
     :return: JSONResponse
     """
+
     return stringproc_endpoint_helpers.char_rmv(word)
 
 

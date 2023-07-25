@@ -9,7 +9,7 @@ ENV PYTHONPATH="${PYTHONPATH}:/."
 
 RUN pip install -r linkedlist/requirements.txt
 
-COPY gitflow_learning_api/common ./common
+COPY gitflow_learning_api/common  ./common
 COPY gitflow_learning_api/linkedlist ./linkedlist
 
 EXPOSE 8080
