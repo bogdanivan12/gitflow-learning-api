@@ -1,23 +1,17 @@
 """
 Main module to start api
 """
-
-
-
-
 import fastapi
 
 import uvicorn
 from starlette.responses import JSONResponse
 
-
 from gitflow_learning_api.common import config_info
 
 from gitflow_learning_api.stringproc \
-    import  stringproc_request_classes
+    import stringproc_request_classes
 from gitflow_learning_api.stringproc \
-    import  stringproc_endpoint_helpers
-
+    import stringproc_endpoint_helpers
 
 app = fastapi.FastAPI()
 
