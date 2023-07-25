@@ -8,10 +8,8 @@ from typing import Callable
 from collections import Counter
 
 from fastapi.responses import JSONResponse
-
-# from stringproc_request_classes import CustomString
 from gitflow_learning_api.stringproc\
-    .stringproc_request_classes import CustomString
+    import stringproc_request_classes
 
 
 logging.basicConfig(filename="log.txt", filemode="w",
@@ -23,21 +21,23 @@ logging.basicConfig(filename="log.txt", filemode="w",
 
 def validator_custom(fnc: Callable):
     """
-    Decorator ce verifica functiile de ValueError
-     si in functie de caz intoarce un obiect JSONResponse cu
-    cod 200 si raspuns adecvat + logging.
-    :param fnc:
-    :return:
+    Decorator which catches all ValueError within
+    called function and   returns a JSONResponse with
+    code 200, fit answer+ logging
+
+    :param fnc: function
+    :return: JSONResponse with code 200, content is the return
+        from the fnc or error(if that is the case)
     """
 
     @wraps(fnc)
     def inner(*args, **kwargs) -> JSONResponse:
-        logging.warning("pizza")
+
         try:
             logging.info("Function %s called",fnc.__name__)
             return JSONResponse(status_code=200, content=fnc(*args, **kwargs))
         except ValueError as error_e:
-            logging.warning("Error when called function %s  "
+            logging.error("Error when called function %s  "
                             "-   %s",fnc.__name__, error_e)
             return JSONResponse(status_code=200,
                                 content={"Error": f"{error_e}"})
@@ -49,8 +49,8 @@ def validator_custom(fnc: Callable):
 def get_char_occ(word: str):
     """
       :param word: string
-      :return: JSONResponse ce va trimite un cod 200
-      si un dictionar cu litere si frecvebta fiecaruia
+      :return: JSONResponse will send code  200
+      and a dict with frequence of each char
       """
     if not set(word) <= set(string.ascii_letters):
         raise ValueError("Word must contain only ascii")
@@ -58,7 +58,7 @@ def get_char_occ(word: str):
 
 
 @validator_custom
-def char_rmv(word: CustomString):
+def char_rmv(word: stringproc_request_classes.CustomString):
     """
     :param word: Pydantic class which contains a string formed
     by letters and numbers, where the letters are stripped and
@@ -66,9 +66,9 @@ def char_rmv(word: CustomString):
     numbers and returns
     :return: JSONResponse
     """
-    if len(word.string) > 255 or len(word.string) < 1 \
+    if (len(word.string) > 255 or len(word.string) < 1
             or (not set(word.string) <= set(string.ascii_letters
-                                            + string.digits)):
+                                            + string.digits))):
         raise ValueError("Word must be up to 255 characters "
                          "and must be alphanumeric")
 

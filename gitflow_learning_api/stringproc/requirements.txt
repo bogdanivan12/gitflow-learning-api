@@ -1,4 +1,4 @@
-fastapi[all]
-pydantic
-pylint
-pytest
+fastapi[all] == 0.100.0
+pydantic == 2.0.3
+pylint == 2.17.4
+pytest ==  7.4.0
