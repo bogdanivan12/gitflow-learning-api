@@ -3,8 +3,9 @@ File containing the endpoint helpers definitions for the linkedlist services.
 """
 import pickle
 
-import linkedlist_classes
-import linkedlist_request_classes as linkedlist_req
+from gitflow_learning_api.linkedlist import linkedlist_classes
+from gitflow_learning_api.linkedlist import linkedlist_request_classes \
+    as linkedlist_req
 
 linked_lists_dict = {}
 

@@ -5,8 +5,8 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 
-import linkedlist_endpoint_helpers as linkedlist_help
-import linkedlist_request_classes as linkedlist_req
+from gitflow_learning_api.linkedlist import linkedlist_endpoint_helpers as linkedlist_help
+from gitflow_learning_api.linkedlist import linkedlist_request_classes as linkedlist_req
 from gitflow_learning_api.common import config_info
 
 app = FastAPI()
